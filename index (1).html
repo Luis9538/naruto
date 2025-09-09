@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frases Cariñosas — Naruto</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ffb347, #ffcc33);
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    color: #fff;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 8px rgba(255,255,255,0.8);
+  }
+
+  .display {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    max-width: 700px;
+    padding: 20px;
+    min-height: 100px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.6);
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeIn 0.5s forwards;
+  }
+
+  .accent {
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 15px #ffe066, 0 0 25px #ffe066;
+    animation: glow 1.5s infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 5px #fff, 0 0 15px #ffe066; }
+    to { text-shadow: 0 0 10px #fff, 0 0 25px #ffe066; }
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  button {
+    background: linear-gradient(45deg, #ffe066, #ff9f1c);
+    border: none;
+    color: #000;
+    padding: 10px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  }
+
+  /* Shurikens flotando */
+  .shuriken {
+    position: absolute;
+    font-size: 1.4rem;
+    animation: floatUp 5s linear forwards;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-250px) rotate(720deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🍥 Frases Ninja con Cariño 🍥</h1>
+<div class="display" id="display"></div>
+
+<div class="controls">
+  <button onclick="showPhrase('/naruto')">Naruto</button>
+  <button onclick="showPhrase('/kakashi')">Kakashi</button>
+  <button onclick="showPhrase('/itachi')">Itachi</button>
+  <button onclick="showPhrase('/lee')">Rock Lee</button>
+</div>
+
+<script>
+const phrases = {
+  "/naruto": "Naruto Uzumaki: “Oye… aunque tomemos caminos distintos, siempre recordaré tu <span class='accent'>sonrisa</span> como mi mejor amuleto.”",
+  "/kakashi": "Kakashi Hatake: “No importa cuánto tiempo pase, los lazos verdaderos nunca se rompen… y el nuestro sigue ahí.”",
+  "/itachi": "Itachi Uchiha: “A veces la distancia es necesaria… pero eso no borra el valor que tienes para mí.”",
+  "/lee": "Rock Lee: “Tu energía me inspiró a ser mejor… y eso es algo que siempre llevaré conmigo.”"
+};
+
+const display = document.getElementById('display');
+
+function showPhrase(cmd) {
+  display.style.animation = 'none';
+  void display.offsetWidth; // reinicia animación
+  display.innerHTML = phrases[cmd];
+  display.style.animation = 'fadeIn 0.5s forwards';
+  for (let i = 0; i < 5; i++) {
+    setTimeout(createShuriken, i * 300);
+  }
+}
+
+function createShuriken() {
+  const shuriken = document.createElement('div');
+  shuriken.className = 'shuriken';
+  shuriken.style.left = Math.random() * 100 + 'vw';
+  shuriken.style.bottom = '0px';
+  shuriken.textContent = '🌀';
+  document.body.appendChild(shuriken);
+  setTimeout(() => shuriken.remove(), 5000);
+}
+</script>
+
+</body>
+</html>
